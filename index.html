@@ -1,12 +1,694 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hola mundo</title>
-    <h1>kiarayala</h1>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perrito Chic | Ropa para perros</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff8f5;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      background: #ffffff;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ff6b81;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: #ff6b81;
+    }
+
+    .cart {
+      background: #ff6b81;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 8%;
+      background: linear-gradient(135deg, #ffe4e8, #fff4df);
+    }
+
+    .hero-text {
+      max-width: 550px;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      line-height: 1.1;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #ff6b81;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #666;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ff6b81;
+      color: white;
+      padding: 15px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      background: #e9546b;
+      transform: translateY(-2px);
+    }
+
+    .hero-dog {
+      font-size: 180px;
+      animation: flotar 3s ease-in-out infinite;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* CATEGORÍAS */
+    .categories {
+      padding: 60px 8%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 35px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .category {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.06);
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .category:hover {
+      transform: translateY(-7px);
+    }
+
+    .category-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    .category h3 {
+      color: #444;
+    }
+
+    /* PRODUCTOS */
+    .products {
+      padding: 70px 8%;
+      background: #fff;
+      text-align: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      text-align: left;
+    }
+
+    .product {
+      background: #fff8f5;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      transition: .3s;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.1);
+    }
+
+    .product-image {
+      height: 230px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 110px;
+      background: #ffe9ed;
+    }
+
+    .product:nth-child(2) .product-image {
+      background: #e9f4ff;
+    }
+
+    .product:nth-child(3) .product-image {
+      background: #fff1cc;
+    }
+
+    .product:nth-child(4) .product-image {
+      background: #e9ffe9;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+    }
+
+    .rating {
+      color: #ffb400;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 23px;
+      color: #ff6b81;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .add-cart {
+      width: 100%;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #ff6b81;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* OFERTA */
+    .offer {
+      margin: 60px 8%;
+      padding: 50px;
+      border-radius: 25px;
+      background: linear-gradient(120deg, #ff6b81, #ff9b8e);
+      color: white;
+      text-align: center;
+    }
+
+    .offer h2 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .offer p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .offer .btn {
+      background: white;
+      color: #ff6b81;
+    }
+
+    /* BENEFICIOS */
+    .benefits {
+      padding: 60px 8%;
+      text-align: center;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .benefit {
+      padding: 30px;
+    }
+
+    .benefit-icon {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .benefit h3 {
+      margin-bottom: 10px;
+    }
+
+    .benefit p {
+      color: #777;
+      line-height: 1.5;
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: #fff0f3;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .newsletter p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .newsletter form {
+      display: flex;
+      justify-content: center;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .newsletter input {
+      flex: 1;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .newsletter button {
+      border-radius: 0 25px 25px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #292929;
+      color: white;
+      padding: 40px 8%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    footer h3 {
+      color: #ff8b9b;
+      margin-bottom: 12px;
+    }
+
+    footer p,
+    footer a {
+      color: #bbb;
+      text-decoration: none;
+      line-height: 1.8;
+    }
+
+    /* CARRITO */
+    .cart-count {
+      background: white;
+      color: #ff6b81;
+      border-radius: 50%;
+      padding: 2px 7px;
+      margin-left: 4px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        text-align: center;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .category-grid,
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 15px 5%;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 50px 6%;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero-dog {
+        font-size: 120px;
+      }
+
+      .category-grid,
+      .product-grid,
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .offer {
+        margin: 40px 5%;
+        padding: 35px 20px;
+      }
+
+      .offer h2 {
+        font-size: 30px;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter input,
+      .newsletter button {
+        border-radius: 25px;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">🐾 Perrito Chic</div>
+
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#categorias">Categorías</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="cart">
+      🛒 Carrito
+      <span class="cart-count" id="cartCount">0</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-text">
+      <h1>Moda para tu <span>mejor amigo</span> 🐶</h1>
+
+      <p>
+        Descubre ropa cómoda, moderna y adorable para que tu perrito
+        luzca increíble en cualquier ocasión.
+      </p>
+
+      <a href="#productos" class="btn">Comprar ahora →</a>
+    </div>
+
+    <div class="hero-dog">🐕</div>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <section class="categories" id="categorias">
+    <h2 class="section-title">Compra por categoría</h2>
+
+    <div class="category-grid">
+
+      <div class="category">
+        <div class="category-icon">🧥</div>
+        <h3>Chaquetas</h3>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">👕</div>
+        <h3>Polos</h3>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">👗</div>
+        <h3>Vestidos</h3>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">🧣</div>
+        <h3>Accesorios</h3>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="products" id="productos">
+    <h2 class="section-title">Productos destacados</h2>
+
+    <div class="product-grid">
+
+      <div class="product">
+        <span class="badge">Más vendido</span>
+
+        <div class="product-image">
+          🐶
+        </div>
+
+        <div class="product-info">
+          <h3>Chaqueta Rosa</h3>
+          <div class="rating">★★★★★</div>
+          <div class="price">S/ 49.90</div>
+          <button class="btn add-cart" onclick="agregarCarrito()">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+
+        <div class="product-image">
+          🐕
+        </div>
+
+        <div class="product-info">
+          <h3>Polera Azul</h3>
+          <div class="rating">★★★★★</div>
+          <div class="price">S/ 39.90</div>
+          <button class="btn add-cart" onclick="agregarCarrito()">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+        <span class="badge">Oferta</span>
+
+        <div class="product-image">
+          🐩
+        </div>
+
+        <div class="product-info">
+          <h3>Vestido Elegante</h3>
+          <div class="rating">★★★★☆</div>
+          <div class="price">S/ 59.90</div>
+          <button class="btn add-cart" onclick="agregarCarrito()">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+
+        <div class="product-image">
+          🐕‍🦺
+        </div>
+
+        <div class="product-info">
+          <h3>Suéter Verde</h3>
+          <div class="rating">★★★★★</div>
+          <div class="price">S/ 44.90</div>
+          <button class="btn add-cart" onclick="agregarCarrito()">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="offer">
+    <h2>🎉 ¡Oferta especial!</h2>
+
+    <p>
+      Obtén <strong>20% de descuento</strong> en tu primera compra.
+    </p>
+
+    <a href="#productos" class="btn">Ver productos</a>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="benefits">
+
+    <h2 class="section-title">¿Por qué comprar con nosotros?</h2>
+
+    <div class="benefit-grid">
+
+      <div class="benefit">
+        <div class="benefit-icon">🚚</div>
+        <h3>Envíos rápidos</h3>
+        <p>
+          Recibe tus productos de forma rápida y segura.
+        </p>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">💳</div>
+        <h3>Pago seguro</h3>
+        <p>
+          Tus compras están protegidas con métodos de pago seguros.
+        </p>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">❤️</div>
+        <h3>Amor por las mascotas</h3>
+        <p>
+          Diseñamos nuestros productos pensando en el bienestar de tu mascota.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+
+    <h2>🐾 Únete a nuestra comunidad</h2>
+
+    <p>
+      Recibe ofertas y novedades directamente en tu correo.
+    </p>
+
+    <form onsubmit="suscribirse(event)">
+      <input
+        type="email"
+        placeholder="Tu correo electrónico"
+        required
+      >
+
+      <button class="btn" type="submit">
+        Suscribirme
+      </button>
+    </form>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contacto">
+
+    <div>
+      <h3>🐾 Perrito Chic</h3>
+      <p>Moda y accesorios para perros.</p>
+    </div>
+
+    <div>
+      <h3>Enlaces</h3>
+      <p><a href="#inicio">Inicio</a></p>
+      <p><a href="#productos">Productos</a></p>
+      <p><a href="#categorias">Categorías</a></p>
+    </div>
+
+    <div>
+      <h3>Contacto</h3>
+      <p>📧 hola@perritochic.com</p>
+      <p>📱 +51 999 999 999</p>
+    </div>
+
+  </footer>
+
+  <script>
+
+    let carrito = 0;
+
+    function agregarCarrito() {
+      carrito++;
+
+      document.getElementById("cartCount").textContent = carrito;
+
+      alert("🐾 ¡Producto agregado al carrito!");
+    }
+
+    function suscribirse(event) {
+      event.preventDefault();
+
+      alert("🎉 ¡Gracias por suscribirte a Perrito Chic!");
+
+      event.target.reset();
+    }
+
+  </script>
+
 </body>
 </html>
